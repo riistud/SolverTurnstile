@@ -1,28 +1,13 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/solver.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "node_modules/**"
-        ]
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "api/solver.js"
-    }
-  ],
   "functions": {
     "api/solver.js": {
       "maxDuration": 60,
       "memory": 1024
     }
   },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/solver.js" }
+  ],
   "env": {
     "NODE_ENV": "production",
     "PUPPETEER_SKIP_DOWNLOAD": "true"
